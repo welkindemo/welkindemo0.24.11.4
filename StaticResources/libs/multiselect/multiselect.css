@@ -1,0 +1,161 @@
+
+pdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+
+multiselect .dropdown-menu {
+  overflow-y: auto;
+  font-weight: normal;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+}
+.open > .dropdown-menu {
+  display: block;
+  width: auto;
+}
+           
+multiselect {
+    display:block;
+}
+multiselect .btn {
+  padding: 10px;
+  font-size: 10pt;
+  width: 120px;
+  font-weight: normal;
+}
+
+multiselect .btn.error{
+    border: 1px solid #da4f49 !important;
+}
+multiselect .dropdown-menu ul {
+    max-height: 200px;
+    overflow-y: auto;
+    width: auto;
+    box-sizing: border-box;
+   /* padding: 3px;*/
+     padding: 5px;
+}
+
+multiselect .dropdown-menu ul li > a {
+    padding: 3px 10px;
+    cursor:pointer;
+    white-space: nowrap;
+    text-decoration: none;
+}
+.dropdown-menu  ul{
+    list-style:none;
+}
+.dropdown-menu ul  li > a:focus, .dropdown-menu  li > a:hover {
+  background-color: #F8971D;
+  background-image: none;
+  color: #FFFFFF;
+}
+
+/*Nabil styling*/
+ 
+   .multiToggle {
+        margin-left:10px;
+        display: inline !important;    
+    
+    }   
+    /*Nabil styling*/
+    .multiSelectContainer > label{
+        width: 125px;
+        text-align: right;
+        padding-right: 10px;
+        margin-left: -12px;
+    }
+    
+    .multiSelectContainer multiselect{
+        display: inline-block;
+    }
+    
+    .dropdown-menu a.ng-binding{
+        display: block;
+        cursor: pointer;
+        padding: 5px;
+        color: black;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+    }
+    
+    .dropdown-menu a.ng-binding input[type="checkbox"]{
+        display: inline;
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+    
+    .multiSelectFilter{
+        width: 100% !important;
+        /*height: 27px !important;*/
+        height: 34px !important;
+    }
+ /*.dropActionButtons .btn{
+        font-size: 12px;
+        padding-top: 3px;
+        max-width: 80px;
+        padding-bottom: 3px;
+        padding-left: 1px;
+        padding-right: 1px;
+        
+    } */
+    .dropActionButtons .btn{
+      font-size: 14px;
+      padding-top: 4px;
+      max-width: 80px;
+      padding-bottom: 4px;
+      padding-left: 2px;
+      padding-right: 2px;
+      margin-bottom: 3px;
+      margin-left: 3px;
+      margin-right: 3px;
+    }
+    
+    multiselect .dropdown > .btn {
+      width: 200px;
+    }
+    
+    multiselect .dropdown > .btn > span:first-child {
+        width: 170px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: left;
+    }
+    
+    multiselect .dropdown > .btn > span.caret{
+        margin-top: 6px;
+    }
+    
+    multiselect .dropdown.open .dropdown-menu {
+        /*width: 300px;*/
+        box-shadow: 2px 1px 1px #888888;
+    }
+    
+    .btnDeselectAll{
+        padding: 0;
+    }
+.dropdown ul li:nth-child(2) {
+    background: #E6E6E6;
+}

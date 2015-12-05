@@ -1,0 +1,31 @@
+<style>
+label {
+    margin-bottom: 0px;
+}
+</style>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
+    <h3 class="modal-title">Upload File</h3>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="row">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-2 control-label text-left" style="text-align:left">
+                            Choose File
+                        </label>
+                        <div class="col-sm-10 text-left" style="text-align:left">
+                            <input type="file" id="uploader" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="upload()">Upload</button>
+    <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+</div>

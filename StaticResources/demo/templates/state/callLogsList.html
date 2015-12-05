@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h3 class="modal-title">Call Logs</h3>
+</div>
+<div class="modal-body">
+    <div class='row form-group'>
+        <!-- <div class='col-sm-2'>{{NewGENNotes.StepName}}</div>-->
+        <div class='col-sm-9'>
+            <!--<input type='text' class="form-control" ng-model="NewGENNotes.Notes" placeholder='Enter General Notes Here'></input>-->
+        </div>
+        <!-- <div class='col-sm-2'>{{NewGENNotes.User}}</div>-->
+        <div class='col-sm-3'>
+            <!--<button class="btn btn-success" type="button" ng-click='openStipsModal()'>-->
+            <!--   <span class="glyphicon glyphicon-plus"></span>Create New Stips-->
+            <!--</button>-->
+        </div>
+    </div>
+    <div class='row'>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="log in callLogs">
+                    <td><a target="_blank" href="./{{log.Id}}">{{ log.Subject }}</td>
+                    <td>{{ log.Description }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class='row'>
+       
+    </div>
+</div>
+<div class="modal-footer">
+   <!-- <button class="btn btn-default" type="button" ng-click="ok()">Ok</button>-->
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

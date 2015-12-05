@@ -1,0 +1,68 @@
+<apex:page controller="AccountListController" standardStylesheets="false" showChat="false" showHeader="true" sidebar="true" applyHtmlTag="true" applyBodyTag="true" docType="html-5.0" readOnly="true">
+    <html>
+
+    <head>
+        <meta charset="utf-8" />
+        <base href="/" />
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
+        <!-- Core Libs -->
+        <apex:includeScript value="{!URLFOR($Resource.libs, 'LibraryDataTables/dataTables/jquery1.11.1.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.libs, 'LibraryDataTables/dataTables/angular1.3.0.js')}" />
+        <apex:includeScript value="//angular-ui.github.io/ui-router/release/angular-ui-router.min.js" />
+        <apex:stylesheet value="{!URLFOR($Resource.libs,'LibraryAngularComponents/angular-components/ui-select/select.min.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.libs, 'LibraryDataTables/dataTables/vendor/datatables/media/css/jquery.dataTables.min.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.libs, 'LibraryDataTables/dataTables/plugins/bootstrap/datatables.bootstrap.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.libs, 'LibraryDataTables/dataTables/vendor/datatables-responsive/css/dataTables.responsive.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.libs, 'multiselect/multiselect.css')}" />
+        <apex:includeScript value="{!URLFOR($Resource.libs, 'LibraryDataTables/dataTables/vendor/datatables/media/js/jquery.dataTables.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.libs, 'LibraryDataTables/dataTables/angular-datatables.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.libs, 'LibraryDataTables/dataTables/vendor/datatables-responsive/js/dataTables.responsive.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.libs, 'LibraryDataTables/dataTables/vendor/bootstrap/dist/js/bootstrap.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.libs, 'LibraryDataTables/dataTables/plugins/bootstrap/angular-datatables.bootstrap.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.libs, 'LibraryAngularComponents/angular-components/ui-select/select.js')}" />
+        <!--  <apex:includeScript value="{!URLFOR($Resource.libs, 'libs/Angular-ui/ui-bootstrap-tpls-0.10.0.min.js')}" />-->
+        <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.4.js"></script>
+        <script src="//m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js" type="text/javascript"></script>
+        <apex:includeScript value="{!URLFOR($Resource.libs,'LibraryAngularComponents/angular-components/angular.sanitize.min.js')}" />
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/textAngular/1.1.2/textAngular.min.js'></script>
+        <apex:includeScript value="{!URLFOR($Resource.libs, 'date/JSdate.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.libs, 'ngDialog/js/ngDialog.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.libs, 'multiselect/multiselectDirective.js')}" />
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+        <apex:stylesheet value="{!URLFOR($Resource.libs, 'ngDialog/css/ngDialog.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.libs, 'VisualStarp/css/visualstrap.css')}" />
+        <apex:styleSheet value="{!URLFOR($Resource.libs, 'bootstrap/css/bootstrap.min.css')}" />
+        <apex:stylesheet value="{!URLFOR($Resource.demo,'css/styles.css')}" />
+        <apex:styleSheet value="{!URLFOR($Resource.libs, 'custom/cssCustomSass.css')}" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.libs,'/ionic/css/ionicons.min.css')}" />
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"></link>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <!--<apex:includeScript value="{!URLFOR($Resource.libs, 'libs/angular-file-upload/dist/angular-file-upload.min.js')}" />-->
+        <script>
+        var VFPageData = {
+            resources: {
+                app_base: '{!$Resource.demo}/'
+            },
+            remoteActions: {
+                'getAccountList': '{!$RemoteAction.AccountListController.getAccountList}'
+            },
+            User: {
+                Name: '{!$User.FirstName} {!$User.LastName}',
+                Email: '{!$User.Email}'
+            }
+        };
+
+        $ = $.noConflict();
+        // $("link[href$='extended.css']").remove(); 
+
+        </script>
+        <apex:includeScript value="{!URLFOR($Resource.demo, 'js/app.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.demo, 'js/applist.js')}" />
+    </head>
+
+    <body ng-app="loan-app.core">
+        <apex:outputText value="<div ui-view></div>" escape="false"></apex:outputText>
+    </body>
+
+    </html>
+</apex:page>

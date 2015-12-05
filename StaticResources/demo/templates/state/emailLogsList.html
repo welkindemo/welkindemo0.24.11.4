@@ -1,0 +1,44 @@
+<div class="modal-header">
+    <h3 class="modal-title">Email Logs</h3>
+</div>
+<div class="modal-body">
+    <div class='row form-group'>
+        <div class='col-sm-9'>
+            
+        </div>
+        <div class='col-sm-3'>
+        </div>
+    </div>
+    <div class='row'>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <!-- <th>Subject</th>-->
+                    <th>Created Date</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="log in emailLogs">
+                    <td width='2%'>
+                        <a title='view' href='./{{log.emailId}}' target='_blank'>
+                            <i class="ion-eye"></i>
+                        </a>
+                    </td>
+                    <!-- <td><a target="_blank" href="./{{log.emailId}}">{{ log.emailSubject }}</td>-->
+                    <td>{{ log.createddate | date:'yyyy-MM-dd h:mma'}}</td>
+                    <td>
+                        <div style='word-wrap:break-word;width:300px;' ng-bind-html="log.emailBody"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class='row'>
+    </div>
+</div>
+<div class="modal-footer">
+    <!-- <button class="btn btn-default" type="button" ng-click="ok()">Ok</button>-->
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

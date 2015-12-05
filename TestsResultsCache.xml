@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestsResultsCache>
+    <TestClasses>
+        <TestClass>
+            <TestClassId>01p28000004qLaiAAE</TestClassId>
+            <TestQueueId>709280000005U1dAAE</TestQueueId>
+            <TestMethods>
+                <TestMethod>
+                    <ApexLogId>07L2800000BVT7HEAX</ApexLogId>
+                    <Name>testDemo</Name>
+                    <TestResultStatus>Pass</TestResultStatus>
+                </TestMethod>
+            </TestMethods>
+        </TestClass>
+    </TestClasses>
+</TestsResultsCache>

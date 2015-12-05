@@ -1,0 +1,27 @@
+// This mixin is used to set components opacity. 
+@mixin opacity($opacity) {
+	opacity             	: $opacity/100;
+	filter              	: alpha(opacity=$opacity);
+}
+
+// This mixin is used to set components gradient background. 
+@mixin gradient-background($start-color,$end-color) {
+	background          	: -webkit-linear-gradient($start-color, $end-color);
+    background          	: -o-linear-gradient($start-color, $end-color);
+    background          	: -moz-linear-gradient($start-color, $end-color);       
+    background          	: linear-gradient($start-color, $end-color);            
+}
+
+// This mixin is used to set components border radius. 
+@mixin border-radius($radius) {
+	-webkit-border-radius	: $radius;
+	-moz-border-radius		: $radius;
+	border-radius			: $radius;
+}
+
+// This mixin is used to set components shadow. 
+@mixin box-shadow($shadow) {
+	-moz-box-shadow     	: $shadow;
+    -webkit-box-shadow  	: $shadow;
+    box-shadow          	: $shadow;
+}

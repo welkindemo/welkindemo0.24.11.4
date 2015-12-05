@@ -1,0 +1,69 @@
+<div class="modal-header">
+    <h3 class="modal-title">View Cases</h3>
+</div>
+<div class="modal-body">
+    <div class='row form-group'>
+        <!-- <div class='col-sm-2'>{{NewGENNotes.StepName}}</div>-->
+        <div class='col-sm-9'>
+            <!--<input type='text' class="form-control" ng-model="NewGENNotes.Notes" placeholder='Enter General Notes Here'></input>-->
+        </div>
+        <!-- <div class='col-sm-2'>{{NewGENNotes.User}}</div>-->
+        <!--<div class='col-sm-3'>
+          <button class="btn btn-success" type="button" ng-click='openCaseModal()'>
+             <span class="glyphicon glyphicon-plus"></span>Create New Case</button>
+         </div>-->
+    </div>
+    <div class='row'>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Case Number</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="objemailMessage in caseAndEmailMessages">{{ objemailMessage.caseObj.Id }}
+                    <td><a target="_blank" href="/{{ objemailMessage.caseObj.Id }}">{{ objemailMessage.caseObj.CaseNumber }}</a></td>
+                    <td>
+                        <div style="word-wrap:break-word;width:300px;">
+                            {{ objemailMessage.caseObj.Description }}
+                        </div>
+                    </td>
+                    <td>{{ objemailMessage.caseObj.Status }}</td>
+                    <td>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th></th>
+                                <th>Email Subject</th>
+                                <th>Created Date</th>
+                                <th>Attachment</th>
+                            </tr>
+                            <tr ng-repeat="emailMessage in objemailMessage.lstEmailMsg">
+                                <td>
+                                    <a title='Reply' href='/_ui/core/email/author/EmailAuthor?email_id={{emailMessage.Id}}&replyToAll=0&retURL={{emailMessage.ParentId}}' target='_blank'>
+                                        <i class="ion-reply"></i>
+                                    </a>
+                                </td>
+                                <td> <a target="_blank" href="./{{ emailMessage.Id }}">{{emailMessage.Subject}}</a></td>
+                                <td>{{emailMessage.CreatedDate | date:'MM/dd/yyyy h:mma'}}</td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        <li ng-repeat="att in emailMessage.Attachments">
+                                            <a target="_blank" href="/servlet/servlet.FileDownload?file={{ att.Id }}">{{ att.Name }}</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal-footer">
+    <!-- <button class="btn btn-default" type="button" ng-click="ok()">Ok</button>-->
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

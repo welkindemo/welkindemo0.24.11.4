@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h3 class="modal-title">Stips</h3>
+</div>
+<div class="modal-body">
+    <div class='row form-group'>
+        <!-- <div class='col-sm-2'>{{NewGENNotes.StepName}}</div>-->
+        <div class='col-sm-9'>
+            <!--<input type='text' class="form-control" ng-model="NewGENNotes.Notes" placeholder='Enter General Notes Here'></input>-->
+        </div>
+        <!-- <div class='col-sm-2'>{{NewGENNotes.User}}</div>-->
+        <div class='col-sm-3'>
+            <button class="btn btn-success" type="button" ng-click='openStipsModal()'>
+                <span class="glyphicon glyphicon-plus"></span>Create New Task</button>
+        </div>
+    </div>
+    <div class='row'>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Task Name</th>
+                    <th>Status</th>
+                    <th>Description</th>
+                    <!--<th>Email</th>
+                    <th>Docs</th>-->
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="stip in Stips">
+                    <td>{{ stip.Stipulate_Title__c }}</td>
+                    <td>{{ stip.Verification_Step__c }}</td>
+                    <td>{{ stip.Document_Name__c }}</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <a href='javascript:void(0);'><span class=' ion-trash-a'></span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class='row'>
+    </div>
+</div>
+<div class="modal-footer">
+    <!-- <button class="btn btn-default" type="button" ng-click="ok()">Ok</button>-->
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

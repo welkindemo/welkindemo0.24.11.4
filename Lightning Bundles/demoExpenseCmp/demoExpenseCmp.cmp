@@ -1,0 +1,52 @@
+<aura:component implements="force:appHostable">
+
+    <!-- Attributes for Expense Counters -->
+    <aura:attribute name="expenseSum" type="Double" default="0.00" />
+    <aura:attribute name="expenseCount" type="Integer" default="0" />
+    <aura:attribute name="approvedSum" type="Double" default="0.00" />
+    <aura:attribute name="approvedCount" type="Integer" default="0" />
+
+    <!-- Attributes for Expense List -->
+    <!-- TODO: Substitute your org's namespace -->
+    
+    <!-- Initialization event handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />         
+
+    <!-- Expense Counters -->
+    <div class="row">
+        <center>
+            <table class="summaryPanel">
+                <tr class="{!(v.expenseSum != v.approvedSum) ? 'alert-danger' : 'alert-success'}" >
+                    <td class="summaryCell">
+                        <!-- Change the counter color to red if total amount is more than 100 -->
+                        <div >
+                            <h3 class="itemTitle" >Exp$</h3>
+                            $<ui:outputNumber value="{!v.expenseSum}" format=".00"/>
+                        </div>
+                    </td>
+                    <td class="summaryCell" >
+                        <div >
+                            <h3 class="itemTitle" >Apr$</h3>
+                            $<ui:outputNumber value="{!v.approvedSum}" format=".00"/>
+                        </div>
+                    </td>   
+                    <td class="summaryCell">
+                        <div >
+                            <h3 class="itemTitle" >Exp#</h3>
+                            <ui:outputNumber value="{!v.expenseCount}"/>
+                        </div>
+                    </td>
+                    <td class="summaryCell">
+                        <div >
+                            <h3 class="itemTitle" >Apr#</h3>
+                            <ui:outputNumber value="{!v.approvedCount}"/>
+                        </div>
+                    </td>
+                </tr>           
+            </table>
+        </center>
+    </div>
+ 
+    <!-- Display Expense Data from Model -->
+    
+</aura:component>

@@ -1,0 +1,128 @@
+//
+// This is the main font definition.
+//
+$ppl-font											: normal 14px Arial;
+
+//
+// This is the opacity applied to disabled components.
+//
+$disabled-opacity										: 50;
+
+//
+// Primary buttons.
+//
+$primary-button-font-size								: 14px;
+$primary-button-font-color							: #FFFFFF;
+$primary-button-padding								: 15px 30px 15px 30px;
+$primary-button-border-radius						: 5px;
+$primary-button-background-color-normal-start		: #F47D23;
+$primary-button-background-color-normal-end			: #EE344C;
+$primary-button-background-color-hover				: #EE344C;
+$primary-button-shadow								: inset 0px 1px 5px 0px rgb(215,210,203);
+
+//	
+// Secondary buttons.
+//
+$secondary-button-font-size							: 14px;
+$secondary-button-font-color						: #555555;
+$secondary-button-padding							: 15px 30px 15px 30px;
+$secondary-button-border-radius						: 5px;
+$secondary-button-background-color-normal			: #ECECEC;
+$secondary-button-background-color-hover			: #D6D6D6;
+$secondary-button-shadow							: inset 0px 1px 5px 0px rgb(215,210,203);
+
+//
+// Action buttons.
+//
+$action-button-font-size								: 10px; 
+$action-button-font-color							: #FFFFFF; 
+$action-button-padding								: 5px 10px 5px 10px;
+$action-button-border-radius						: 10px;
+$action-button-background-color-normal				: #F8971D;
+$action-button-background-color-hover				: #F5841F;
+
+//
+// Button labels.
+//
+$button-label-big-font									: bold 14px;
+$button-label-small-font							: bold 10px;
+$button-icon-label-spacer							: 5px;
+
+//
+// Input text.
+//
+$myppl-logo-width									: 30%;
+$myppl-logo-height									: 30%;
+$myppl-margin-top									: 10px;
+
+$input-text-border-radius							: 5px;
+$input-text-border-normal							: 1px solid #D2D2D2;
+$input-text-border-selected							: 1px solid #F47D23;
+$input-text-border-error							: 1px solid #EE344C;
+
+//
+// PPL Footer
+//
+$footer-container-width								: 940px;
+
+//
+// PPL Main Menu
+//
+$menu-container-width								: 940px;
+$menu-border-radius									: 5px;
+
+//
+// PPL Primary Menu
+//
+$primary-menu-height								: 75px;
+$primary-menu-container-background					: #EFEFEF;
+$primary-menu-container-border-bottom 				: 2px solid #E3E3E3;
+
+$myppl-logo-width									: 35%;
+$myppl-logo-height									: 35%;
+$myppl-logo-margin-top								: 15px;
+
+$primary-menu-bar-parent-font-color					: #777777; 	
+$primary-menu-bar-parent-font-size					: 14px;
+$primary-menu-bar-parent-font-weight				: bold;
+$primary-menu-bar-parent-background					: #EFEFEF;
+$primary-menu-bar-parent-font-color-hover			: #FFFFFF;
+$primary-menu-bar-parent-background-hover			: #777777;
+$primary-menu-bar-parent-padding					: 15px 18px 15px 18px;
+$primary-menu-bar-child-padding						: 10px 80px 10px 20px; 
+$primary-menu-bar-child-font-size					: 14px;
+$primary-menu-bar-child-font-color					: #DDDDDD; 
+$primary-menu-bar-child-background					: #777777;
+$primary-menu-bar-child-font-color-hover			: #FFFFFF; 
+$primary-menu-bar-child-background-hover			: #888888;
+	
+//
+// PPL Secondary Menu
+//
+
+$secondary-menu-height								: 50px;
+$secondary-menu-container-background				: #F8971D;
+$secondary-menu-container-border-bottom 			: 2px solid #DD872C;
+
+$logged-user-panel-font-color						: #FFFFFF;
+$logged-user-panel-font-weight						: bold;
+
+$secondary-menu-bar-parent-font-color				: #FFFFFF; 
+$secondary-menu-bar-parent-font-size				: 18px;
+$secondary-menu-bar-parent-background				: #F8971D;
+$secondary-menu-bar-parent-padding					: 15px 20px 15px 20px;
+$secondary-menu-bar-parent-font-color-hover			: #FFFFFF; 
+$secondary-menu-bar-parent-background-hover			: #777777;
+$secondary-menu-bar-child-font-color				: #DDDDDD;
+$secondary-menu-bar-child-background				: #777777;
+$secondary-menu-bar-child-font-color-hover			: #FFFFFF;
+$secondary-menu-bar-child-background-hover			: #888888;
+$secondary-menu-bar-child-padding					: 10px 80px 10px 20px; 
+
+//
+// Footer
+//
+$footer-font-size									: 10px;
+$footer-font-color									: #FFFFFF;
+$footer-font-weight									: bold;
+

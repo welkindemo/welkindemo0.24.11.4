@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{VerificationStepDetail.step}}</h3>
+</div>
+<div class="modal-body">
+    <div class='row'>
+        <div class='col-sm-12'>
+            <div class="form-group">
+                <span for="User_ID" style='float:left;'>Verification Status</span>
+                <select class='form-control' ng-model="VerificationStepDetail.verificationStatus" ng-disabled="true" ng-options="status.value as status.label for status in VerificationStepDetail.lstStatus"></select>
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-8'>
+            <div class="form-group">
+                <span for="Assignee">Assignee</span>
+                <select class='form-control' ng-model="VerificationStepDetail.assignee" ng-options="assignee.value as assignee.label for assignee in VerificationStepDetail.lstAssignee"></select>
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-8'>
+            <div class="form-group">
+                <span for="Reason">Reason</span>
+                <textarea class='form-control' ng-model="VerificationStepDetail.reason" style='height:100px;width:100%;' required="true"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn {{btnClass}}" type="button" ng-click="ok()">{{btnText}}</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

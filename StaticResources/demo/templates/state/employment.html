@@ -1,0 +1,39 @@
+<!--<div class='rows'>
+    <div class="col1-md-7" style='text-align: center;padding:4px;'>
+        <button class="btn btn-primary " ng-click="open('Verify');">Verify</button>
+        <button class='btn btn-default' ng-click="open('Declined');">Decline</button>
+    </div>
+</div>-->
+<div class='rows rightcontainer'>
+    <tabset>
+        <tab ng-repeat="workspace in workspaces" heading="{{workspace.docType}}" active=workspace.active>
+            <div class='embed-responsive embed-responsive-16by9' >
+                <iframe class='embed-responsive-item' ng-src="{{workspace.docLinkDetail}}"></iframe>
+                {{workspace.message}}
+            </div>
+        </tab>
+         <select ng-model="reporttype" ng-options="type.Type as type.Type for type in modeReport" style='float:right;' ></select> 
+        <select ng-model="selDoc" ng-options="type.Type as type.Type for type in actionType" style='float:right;' ng-change="addWorkspace(this)"></select>
+    </tabset> 
+<!--<tabset>-->
+    <!--<tab heading="Income Bucket">-->
+    <!--    <div class='embed-responsive embed-responsive-16by9'>-->
+    <!--        <iframe class='embed-responsive-item' src="https://nilc.org/x/i-766.jpg"></iframe>-->
+    <!--     </div> -->
+    <!--</tab>-->
+    <!--<tab heading="Bank Bucket">-->
+    <!--    Bank Bucket-->
+    <!--</tab>-->
+    <!--<tab heading="{{docDetail.docType}}" ng-repeat="docDetail in customerDocDetails">-->
+    <!--    <div class='embed-responsive embed-responsive-16by9'>-->
+    <!--        <iframe class='embed-responsive-item' ng-src="{{docDetail.docLinkDetail}}"></iframe>-->
+    <!--          {{docDetail.message}}-->
+    <!--    </div>-->
+    <!--</tab>-->
+    <!--  <select ng-model="reporttype" ng-options="type.Type as type.Type for type in modeReport" style='float:right;'></select>-->
+    <!--  <select ng-model="type" ng-options="type.Type as type.Type for type in actionType" style='float:right;'></select>-->
+<!--</tabset>-->
+<div class='row form-group' >
+     <textarea  class="form-control Notestextareastyle" ng-model='Notes.Note__c' ng-blur='updateNotes();'  placeholder='Custom Notes For {{state}}' ></textarea>
+ </div>
+</div>

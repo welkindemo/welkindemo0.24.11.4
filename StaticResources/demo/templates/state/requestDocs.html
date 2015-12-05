@@ -1,0 +1,57 @@
+<style>
+label {
+    margin-bottom: 0px;
+}
+</style>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" ng-click="cancel()">&times;</button>
+    <h3 class="modal-title">Request Documents</h3>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="row">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="row" ng-repeat="docs in reqdoc.requesteddocs" ng-if="docs != 'Other'">
+                        <label class="col-sm-4 control-label text-left" style="text-align:left">
+                            <input type="checkbox" checklist-model="reqdoc.selecteddocs" checklist-value="docs" class="form-control1"> {{docs}}
+                        </label>
+                        <div class="col-sm-5 text-left" style="text-align:left">
+                            <select class="form-control" ng-model="reqdoc.selectedtasks">
+                                <option ng-if="objTask.IsClosed" value="{{objTask.Id}}" ng-repeat="objTask in customerdetail.lstTask">{{objTask.Stipulate_Title__c}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label class="col-sm-4 control-label text-left" style="text-align:left">
+                            <input type="checkbox" ng-model="otherCheckbox" class="form-control1">Other
+                            <!-- ng-model="otherCheckbox"> -->
+                        </label>
+                        <div class="col-sm-5">
+                            <div class="form-group" ng-show="otherCheckbox">
+                                <label for="stipulate" class="col-sm-3 control-label" style="text-align:left">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="name" placeholder="Name" ng-model="reminderDetails.Name">
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="otherCheckbox">
+                                <label class="col-sm-3 control-label" for="verification" style="text-align:left">Step</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="verification" ng-model="reminderDetails.seletedstep">
+                                        <option value="{{str}}" ng-repeat="str in reqdoc.step">{{str}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" type="button" ng-click="ok()">Send</button>
+    <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+</div>

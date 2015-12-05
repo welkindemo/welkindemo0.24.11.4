@@ -1,0 +1,17 @@
+<div id="page">
+    <div id="maincontent">
+        <div class="row mainFontbolder ">
+            <div id='filters' class="col-md-offset-1 pull-right">
+                <div class="col-sm-4 multiSelectContainer">
+                    <multiselect class="input-xlarge" multiple="true" ng-model="selectedFilters.applicationList.fieldValues" options="anAppList for anAppList in menuFiltersOptions.applicationList" change="selectionHandler();"></multiselect>
+                </div>
+                <div class="col-sm-2 "></div>
+            </div>
+        </div>
+        <div class='results-table-main rounded-tops'>
+            <table datatable=" " dt-disable-deep-watchers="true" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance" class="row-border hover table table-striped1 table-bordered1" width="100%">
+            </table>
+        </div>
+        <div class="Loading" ng-show="isLoading"></div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <h3 class="modal-title">Reopen Application</h3>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <div class="row">
+            <form class="form-inline">
+                <div class="form-group">
+                    <div class="text-center">
+                        Are you sure you want to reopen the application ? This would send the application back to Verification and reset all the verification steps that have been declined.
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-sm-8 col-md-offset-4'>
+                        <div class="checkbox">
+                            <label>Create Task</label>
+                            <input type="checkbox" ng-model="createTaskModel">
+                        </div>
+                    </div>
+                </div>
+                <div class='row' ng-show="createTaskModel">
+                    <div class="col-sm-4">
+                        <label>Task Name</label>
+                    </div>
+                    <div class='col-sm-8'>
+                        <div>
+                            <input class='form-control' style="width:100%;" type="text" ng-model="objTask.Stipulate_Title__c">
+                        </div>
+                    </div>
+                </div>
+                <div class='row' ng-show="createTaskModel">
+                    <div class="col-sm-4">
+                        <label>Task Description</label>
+                    </div>
+                    <div class='col-sm-8'>
+                        <div>
+                            <textarea class='form-control' style="height:200px; width:100%;" ng-model="objTask.description"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn {{btnClass}}" type="button" ng-click="ok()">Ok</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

@@ -1,0 +1,99 @@
+<style>
+.dropdown-menu1 span {
+    padding: 0px;
+    padding: 0px;
+    text-align: left;
+    padding-left: 0px !important;
+}
+
+.my-drop-zone {
+    border: dotted 3px lightgray;
+}
+
+.nv-file-over {
+    border: dotted 3px red;
+}
+
+
+/* Default class applied to drop zones on over */
+
+.another-file-over-class {
+    border: dotted 3px green;
+}
+
+html,
+body {
+    height: 100%;
+}
+</style>
+<!--<div class='rows'>
+    <div class="col1-md-7" style='text-align: center;padding:4px;'>
+        <button  class="btn btn-primary " ng-click="open('Verify');">Verify</button>
+        <button  class='btn btn-default' ng-click="open('Decline');">Decline</button>
+    </div>
+</div>-->
+<div class="panel panel-default">
+    <div class="panel-heading">Documents</div>
+    <div class="panel-body">
+        <div class='rows'>
+            <div class="col-md-3" style='text-align: center;padding:4px;'>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <ul class="nav nav-pills1 nav-stacked ulDrp">
+                            <li class='ulDrp' ng-repeat="(key,doc) in availableDocs">
+                                <span class="dropdown-toggle activeTab">{{key}}</span>
+                                <ul class="dropdown-menu1">
+                                    <span ng-repeat="subTab in doc">
+                                       <!-- <li ng-repeat="(docname,link) in subTab.docLinks">
+                                            <a style="cursor:pointer" ng-click="loadContent(link)">{{docname}}</a>
+                                        </li> -->
+                                         <li>
+                                            <a style="cursor:pointer" ng-click="loadContent(subTab.docLinkDetail)">{{subTab.docType}}</a>
+                                        </li> 
+                                    </span>
+                                </ul>
+                            </li>
+                            <li class='ulDrp' ng-repeat="doc in unavailableDocs">
+                                <span class="activeTab">
+                                   <input type="checkbox" name="Income" value="Employment" ng-checked="{{doc.isChecked}}" />{{doc.tabname}}
+                               </span>
+                            </li>
+                            <li class='ulDrp'>
+                                <span class="dropdown-toggle activeTab" ng-show='additionaldoc.length>0'>Uploaded Docs</span>
+                                <ul class="dropdown-menu1">
+                                    <span ng-repeat="subTab in additionaldoc"> 
+                                         <li>
+                                            <a style="cursor:pointer" ng-click="loadContent(subTab.docLinkDetail)">{{subTab.docType}}</a>
+                                        </li> 
+                                    </span>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class='rows'>
+                                    <div class="col-md-12" style=''>
+                                        <button class='btn btn-default' class='btn btn-default' value='Send Reminder' ng-click="openSendReminderModal('lg')">Send Reminder </button>
+                                        <button class="btn btn-primary" ng-click="openUploadWindow('lg')">Upload Docs</button>
+                                        <button class='btn btn-default' ng-click="openRequestDocsModal('lg')">Request Docs</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9" style='text-align: center;padding:4px;'>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class='embed-responsive embed-responsive-16by9'>
+                            <!--<iframe class='embed-responsive-item' src="https://upload.wikimedia.org/wikipedia/commons/9/92/Croatian_driving_licence.jpg"></iframe>-->
+                            <iframe class='embed-responsive-item' ng-src="{{defaultDoc}}"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='row form-group'>
+        <textarea class="form-control Notestextareastyle" ng-model='Notes.Note__c' ng-blur='updateNotes();' placeholder='Custom Notes For {{state}}'></textarea>
+    </div>
+</div>

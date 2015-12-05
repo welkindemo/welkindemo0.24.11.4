@@ -1,0 +1,1239 @@
+<style>
+.row {
+    padding: 4px;
+    margin: 0px;
+}
+
+.form-group {
+    padding: 0px;
+    margin: 0px;
+}
+
+input1[type="text"],
+textarea.form-control,
+input1[type="search"] {
+    width: 124px;
+}
+
+.btn,
+.btn-default:hover,
+.btn-default:focus {
+    padding: 6px 12px;
+}
+
+.table-bordered>thead>tr>th,
+.table-bordered>tbody>tr>td {
+    border: 1px solid #ddd;
+}
+
+.ui-widget {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+.backover {
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: #000000;
+    height: 100% !important;
+}
+
+.preloader {
+    margin: 20% auto;
+    margin-left: 40%;
+    position: absolute;
+    display: block;
+}
+
+.ta-editor {
+    height: 250px;
+    overflow: scroll;
+}
+
+/*.modal-lg {
+    width: 1075px;
+    margin-left: 18% !important;
+}*/
+
+
+/*a.dynamic:hover {*/
+
+
+/*    z-index:32767;*/
+
+
+/*    position:absolute;*/
+
+
+/*    margin-left:65%;*/
+
+
+/*}*/
+
+#sidebarCell,
+#sidebarDiv .sidebarModule,
+#sidebarDiv .nestedModule {
+    z-index: 20000;
+    position: relative;
+}
+</style>
+<script>
+    $(function () {
+        // $('#DOB').datetimepicker();
+    });
+</script>
+<div class="Loading" ng-show="isLoading">
+    <div class="backover" style='z - index: 1030;background - color: #000000;'></div>
+    <div class='loader preloader' align="center">
+        <div class='processText'>Please wait..</div>
+        <img src="/img/loading.gif" alt="please  wait ..." />
+    </div>
+</div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" style='padding:2px;'>
+            <div class="row">
+                <div class="col-md-2" style='padding:0px;'>
+                    <div class='row'>
+                        <div class='col-sm-9' style='padding:0px;'>
+                            <span title='User Id'>UID:{{customerdetail.objLoanApplication.User_ID__c}}</span>
+                            <span title='Loan Id'>LID:{{customerdetail.objLoanApplication.Loan_ID__c}}</span>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-12' style='padding:0px;'>
+                            <!--<span class='ion-ios-telephone' >-->
+                            <!--<a href="javascript:void(0);" onclick="calldialer(number,recId,this);" title=""><img src="/img/btn_dial_inline.gif" alt="Click to dial" width="16" height="10" title="Click to dial" style="display: inline;"><img src="/img/btn_nodial_inline.gif" alt="Click to dial disabled" width="16" height="10" style="display: none;" title="Click to dial disabled"></a>-->
+                            <a style="text-decoration:none;" href="javascript:void(0);" onclick="showSideBar();$('#five9').show();disableClicked(this, 'Click to dial disabled');sendCTIMessage('/CLICK_TO_DIAL?DN='+encodeURIComponent(number)+'&amp;ID='+recId+'&amp;ENTITY_NAME=Account&amp;OBJECT_NAME='+encodeURIComponent(recName)+'&amp;PARAMS='+encodeURIComponent('myparam1,myparam2')+'&amp;DISPLAY_NAME='+encodeURIComponent('Account'));return false;" title="">
+                                <span class="ion-ios-telephone" style="font-size: 20px;color:green" title="Click to dial" style="display: inline;"></span>
+                                <span class="ion-ios-telephone" style="font-size: 20px;color:black;display: none;" title="Click to dial disabled"></span>
+                                <!--<img src="/img/btn_dial_inline.gif" alt="Click to dial" width="16" height="10" title="Click to dial" style="display: inline;">-->
+                                <!--<img src="/img/btn_nodial_inline.gif" alt="Click to dial disabled" width="16" height="10" style="display: none;" title="Click to dial disabled">-->
+                            </a>
+                            <!--<a href="javascript:void(0);" ng-click="five9App(customerdetail.objLoanApplication.ACCOUNT__r.PersonHomePhone,'',this);" title=""><img src="/img/btn_dial_inline.gif" alt="Click to dial" width="16" height="10" title="Click to dial" style="display: inline;"><img src="/img/btn_nodial_inline.gif" alt="Click to dial disabled" width="16" height="10" style="display: none;" title="Click to dial disabled"></a>-->
+                            <!--</span>-->
+                            <!--<a style="text-decoration:none;" href="mailto:{{customerdetail.objLoanApplication.ACCOUNT__r.PersonEmail}}?from=support@ascendloan.com&subject=Ascendloan Subject&body=Ascendloan Template">-->
+                            <span class='ion-email' style="font-size: 20px;color:#77A2C2;cursor:pointer;" ng-click="openEmailModal('lg')"></span>
+                            <!--</a>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style='padding:0px;'>
+                    <div style='text-align:center;'>
+                        <b> <a ng-href='/{{customerdetail.objLoanApplication.ACCOUNT__c}}' target='_blank'> {{customerdetail.objLoanApplication.ACCOUNT__r.Name}}</a></b></div>
+                    <div class="breadcrumb2 flat {{selectedTab}}">
+                        <a ui-sref="container.appverify.state({'id':'{{tab.tabname}}','state':'{{tab.state}}'})" class="{{tab.verified}} {{tab.tabname}} " ng-repeat="tab in tabs">{{tab.tabname}}</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class='row'>
+                        <div class='col-sm-4' style='text-align:right;'>
+                            <div>
+                                <span for="Assignee">Loan Status</span>
+                            </div>
+                        </div>
+                        <div class='col-sm-8'>
+                            <div>
+                                <span for="Assignee">{{customerdetail.objLoanApplication.Loan_Status_Desc__c}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-4' style='text-align:right;'>
+                            <div>
+                                <span for="Assignee">Assignee</span>
+                            </div>
+                        </div>
+                        <div class='col-sm-8'>
+                            <div class="form-group">
+                                <select class='form-control' ng-model="customerdetail.assignee" ng-options="status.value as status.label for status in customerdetail.lstAssignee" ng-change="setAssignee()"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class='row'>
+                        <div class='rows'>
+                            <div class="col1-md-7" style='text-align: center;padding:4px;'>
+                                <button class="btn btn-primary " ng-click="open('Verify');">Verify</button>
+                                <button class='btn btn-default' ng-click="open('Decline');">Decline</button>
+                            </div>
+                           
+                        </div>
+                    </div>-->
+                </div>
+                <!-- <div class="col-md-2">
+                    <button class='btn btn-default'>Stips</button>
+                    <button class='btn btn-default'>Notes</button>
+                </div>-->
+            </div>
+            <div class='rows'>
+                <div class="col-md-4">
+                    <!-- <button class="btn btn-primary " ng-click="openViewCasesModal()" >View Cases</button>-->
+                    <button class="btn btn-primary " ng-click="openViewCallLogsModal('lg')">Calls</button>
+                    <button class="btn btn-primary " ng-click="openViewEmailLogsModal('lg')">Emails</button>
+                    <button class="btn btn-primary " ng-click="openViewCasesModal('lg')">Cases</button>
+                </div>
+                <div class="col-md-4" style='text-align: center;padding:4px;'>
+                    <div ng-show='(!objVerificationStepSummary.isAnyStepDeclined && !objVerificationStepSummary.isAllStepVerified && state!="risk" && customerdetail.objLoanApplication.Loan_Status_Desc__c!="Application_Rejected")'>
+                        <button class="btn btn-primary " ng-click="confirmbox('Verify Income','Are you sure you want to verify Income ?');">Verify</button>
+                        <button class='btn btn-default' ng-click="open('Decline');">Decline</button>
+                    </div>
+                    <div ng-show='(objVerificationStepSummary.isInRiskStep && !objVerificationStepSummary.isActionTakenByRiskDept && state=="risk" && customerdetail.objLoanApplication.Loan_Status_Desc__c!="Application_Rejected")'>
+                        <button class="btn btn-primary " ng-click="openApprovalWindow(true,false,'ok',true,false);">Approve Loan</button>
+                        <button class='btn btn-default' ng-click="openApprovalWindow(true,false,'ok',false,true);">Reject Loan</button>
+                    </div>
+                    <!--objVerificationStepSummary.isRejectedByRiskDept -->
+                    <div ng-show="customerdetail.objLoanApplication.Loan_Status_Desc__c=='APPLICATION_REJECTED'">
+                        <button class="btn btn-primary " ng-click="openReopenApplicationModal();">Reopen Application</button>
+                    </div>
+                </div>
+                <div class="col-md-4" style='text-align: center;padding:4px;'>
+                    <!--<button class='btn btn-default' ng-click="openStipsModal('lg')">Send Email</button>-->
+                    <button class="btn btn-success" type="button" ng-click="openStipsModal('lg')">
+                        <span class="glyphicon glyphicon-plus"></span>Create New Task</button>
+                    <button class='btn btn-default' ng-click="openNotesModal('lg')">Notes</button>
+                </div>
+            </div>
+            <!-- <div class='rows' ng-show="notifications.length>0">
+            <div class="col-md-12"> 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <dl>
+                            <dd ng-repeat="notification in notifications">{{notification}}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+            <div class='rows' ng-show="customerdetail.lstTask.length>0">
+                <div class="col-md-12" style='padding:1px;'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                Tasks
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <table class='table table-bordered tablepadding'>
+                                <thead>
+                                    <th>Task Name</th>
+                                    <th>Task Description</th>
+                                    <th>Associated Step</th>
+                                    <th>Close Task</th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat='objTask in customerdetail.lstTask'>
+                                        <td>{{objTask.Stipulate_Title__c}}</td>
+                                        <td>{{objTask.Description}}</td>
+                                        <td>{{objTask.Verification_Step__c}}</td>
+                                        <td ng-show="!objTask.IsClosed">
+                                            <button class='btn btn-default btn-xs' style='padding:1px 5px;' ng-click="closeTask(objTask.Id)">Close Task</button>
+                                        </td>
+                                        <td ng-show="objTask.IsClosed">Closed</td>
+                                        <tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--</div>
+</div>     -->
+            <div class='rows'>
+                <div class="col-md-12" style='padding:1px;'>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                Financial Summary
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <table class='table table-bordered tablepadding'>
+                                <thead>
+                                    <th></th>
+                                    <th>Risk Segment</th>
+                                    <th>Total Income</th>
+                                    <th>Total Debt</th>
+                                    <th>DTI</th>
+                                    <th>Max DTI</th>
+                                    <!--<th>Max DTI</th>-->
+                                    <th>Requested Loan Amt</th>
+                                    <th>Affordable Amt</th>
+                                    <th>Max Loan Amt</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Original</td>
+                                        <td>{{customerdetail.objLoanApplication.Risk_Segment__c}}</td>
+                                        <td>{{customerdetail.objLoanApplication.Total_Annual_Income__c}}</td>
+                                        <td>{{customerdetail.objLoanApplication.Total_Debt__c}}</td>
+                                        <td>{{customerdetail.objLoanApplication.Current_Debt_Income_Ratio_Val__c}}</td>
+                                        <td>{{customerdetail.objLoanApplication.Max_Debt_Income_Ratio_Val__c}}</td>
+                                        <!--<td>{{customerdetail.objLoanApplication.Max_Debt_Income_Ratio_Val__c}}</td>-->
+                                        <td>{{customerdetail.objLoanApplication.Req_Loan_Amt__c | currency}}</td>
+                                        <td>{{customerdetail.objLoanApplication.Affordable_Loan_Amt__c | currency}}</td>
+                                        <td>{{customerdetail.objLoanApplication.Max_Loan_Amt__c | currency}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Revised</td>
+                                        <td>{{customerdetail.objLoanApplication.Risk_Segment__c}}</td>
+                                        <td>{{customerdetail.objLoanApplication.Verified_Total_Annual_Income__c }}</td>
+                                        <td>{{customerdetail.objLoanApplication.Verified_Total_Debt__c }}</td>
+                                        <td>{{customerdetail.objLoanApplication.Current_Debt_Income_Ratio_Val__c}}</td>
+                                        <td>{{customerdetail.objLoanApplication.Max_Debt_Income_Ratio_Val__c}}</td>
+                                        <!--<td>{{customerdetail.objLoanApplication.Max_Debt_Income_Ratio_Val__c}}</td>-->
+                                        <td>{{customerdetail.objLoanApplication.Req_Loan_Amt__c | currency}}</td>
+                                        <td>{{customerdetail.objLoanApplication.Affordable_Loan_Amt__c | currency}}</td>
+                                        <td>{{customerdetail.objLoanApplication.Max_Loan_Amt__c | currency}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 col-sm-4" style='min-height:300px;border:0px solid gray;margin-right:0px;padding:1px;'>
+            <!--<div class="row">
+                    <div class="col-md-3" style='padding:6px 12px;'>
+                        <button class='btn btn-default'>DTI Recalc</button>
+                    </div>
+                </div>-->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class='col-sm-8'>
+                            Verification Data
+                        </div>
+                        <div class='col-sm-4'>
+                            <!--  <a href='javascript:void(0);' class="open">Expand all</a>
+                            <a href='javascript:void(0);' class="close1">Collapse all</a>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div id="accordion">
+                        <h3 data-status='identity' data-num='0'>Identity Details</h3>
+                        <div class="row">
+                            <div class='row'>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="FirstName" style='float:left;'>First Name</span>
+                                        <input type="text" class="form-control" id="FirstName" ng-model="customerdetail.objLoanApplication.ACCOUNT__r.FirstName">
+                                    </div>
+                                </div>
+                                <!--<div class='col-sm-4'>
+                                <div class="form-group">
+                                    <span for="MiddleName">Middle Name</span>
+                                    <input type="text" class="form-control" id="MiddleName" ng-model="customerdetail.objLoanApplication.ACCOUNT__r.MiddleName">
+                                </div>
+                            </div>-->
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="LastName" style='float:left;'>Last Name</span>
+                                        <input type="text" class="form-control" id="LastName" ng-model="customerdetail.objLoanApplication.ACCOUNT__r.LastName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <!--<div class='col-sm-4'>
+                                    <div class="form-group">
+                                        <span for="LastName" style='float:left;'>Last Name</span>
+                                        <input type="text" class="form-control" id="LastName">
+                                    </div>
+                                </div>-->
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="PrimaryPhoneNo">Primary Phone No.</span>
+                                        <input type="text" class="form-control" id="PrimaryPhoneNo" ng-model="customerdetail.objLoanApplication.ACCOUNT__r.PersonHomePhone">
+                                    </div>
+                                </div>
+                                <div class='col-sm-6' style='padding:0px;'>
+                                    <div class='row'>
+                                        <div class="form-group">
+                                            <span for="SecondaryPhoneNo">Secondary Phone No.</span>
+                                            <input type="Email" class="form-control" id="SecondaryPhoneNo" ng-model="customerdetail.objLoanApplication.ACCOUNT__r.PersonOtherPhone">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row' ng-if="customerdetail.objLoanApplication.ACCOUNT__r.Additional_Phone_Number__c">
+                                <div class='col-sm-12'>
+                                    <div class="form-group">
+                                        <span for="PrimaryPhoneNo">Additional Phone No.</span>
+                                        <input type="text" class="form-control" id="PrimaryPhoneNo" ng-model="customerdetail.objLoanApplication.ACCOUNT__r.Additional_Phone_Number__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-4'>
+                                    <div class="form-group">
+                                        <span for="Address" style='float:left;'>Address</span>
+                                        <textarea class="form-control" id="Address" style='height:276px;'>{{customerdetail.objLoanApplication.Identity_Verification__r[0].ID_Address__c}} {{customerdetail.objLoanApplication.Identity_Verification__r[0].ID_City__c}} {{customerdetail.objLoanApplication.Identity_Verification__r[0].ID_State__c}}</textarea>
+                                    </div>
+                                </div>
+                                <div class='col-sm-8'>
+                                    <div class='row'>
+                                        <div class="form-group">
+                                            <span for="EmailAddress">Email Address</span>
+                                            <input type="text" class="form-control" id="EmailAddress" ng-model="customerdetail.objLoanApplication.ACCOUNT__r.PersonEmail">
+                                        </div>
+                                    </div>
+                                    <div class='row' ng-if="customerdetail.objLoanApplication.ACCOUNT__r.AdditionalEmail__pc">
+                                        <div class='col-sm-12'>
+                                            <div class="form-group">
+                                                <span for="PrimaryPhoneNo">Additional Email</span>
+                                                <input type="text" class="form-control" id="AdditionalEmail" ng-model="customerdetail.objLoanApplication.ACCOUNT__r.AdditionalEmail__pc">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class="form-group">
+                                            <span for="DOB">DOB</span>
+                                            <input type="text" class="form-control" id="DOB" value="{{customerdetail.objLoanApplication.ACCOUNT__r.PersonBirthdate | date : 'MM/dd/yyyy'}}">
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class="form-group">
+                                            <span for="SSN">SSN</span>
+                                            <input type="text" class="form-control" id="SSN" ng-model="customerdetail.objLoanApplication.ACCOUNT__r.SSN__pc">
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class="form-group">
+                                            <span for="SSN">ID Number</span>
+                                            <input type="text" class="form-control" id="IDNumber" ng-model="customerdetail.objLoanApplication.Identity_Verification__r[0].ID_Number__c">
+                                        </div>
+                                    </div>
+                                    <div class='row'>
+                                        <div class="form-group">
+                                            <span for="SSN">ID State</span>
+                                            <input type="text" class="form-control" id="IDState" ng-model="customerdetail.objLoanApplication.Identity_Verification__r[0].ID_State__c">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 data-status='income' data-num='1'>Income Details</h3>
+                        <div>
+                            <div class='row'>
+                                <div class='col-sm-12'>
+                                    <div class="form-group">
+                                        <span for="FirstName" style='float:left;'>Employment Status</span>
+                                        <input type="text" class="form-control" id="FirstName" ng-model="customerdetail.objLoanApplication.Employment_Status__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-12'>
+                                    <div class="form-group">
+                                        <span for="FirstName" style='float:left;'>Employment Title</span>
+                                        <input type="text" class="form-control" id="FirstName" ng-model="customerdetail.objLoanApplication.Employment_Verification__r[0].Employment_Title__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-12'>
+                                    <div class="form-group">
+                                        <span for="FirstName" style='float:left;'>Income Type</span>
+                                        <input type="text" class="form-control" id="FirstName" ng-model="customerdetail.objLoanApplication.Employment_Verification__r[0].Income_Type__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-12'>
+                                    <div class="form-group">
+                                        <span for="FirstName" style='float:left;'>Pay Frequency</span>
+                                        <input type="text" class="form-control" id="FirstName" ng-model="customerdetail.objLoanApplication.Employment_Verification__r[0].Pay_Frequency__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <!-- Table -->
+                                <table class="table table-bordered table-responsive" border='0' width='100%' style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:25%">Income</th>
+                                            <th style="width:10%">Stated</th>
+                                            <th style="width:65%">Verified</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!--<tr>
+                                            <td width='70%'>{{FinancialDetail.objIncome.name}}</td>
+                                            <td>{{FinancialDetail.objIncome.stated | currency}}</td>
+                                            <td>{{FinancialDetail.objIncome.Verified}}</td>
+                                        </tr>-->
+                                        <tr>
+                                            <td >Reported Annual Income</td>
+                                            <td>{{customerdetail.objLoanApplication.Annual__c | currency}}</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan='3' style='background-color:#f5f5f5;'>Income from Docs</td>
+                                        </tr>
+                                        <!--<tr>
+                                            <td>
+                                                Primary Income
+                                            </td>
+                                            <td>
+                                                &nbsp;
+                                            </td>
+                                            <td>
+                                                &nbsp;
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Secondary Income
+                                            </td>
+                                            <td>
+                                                &nbsp;
+                                            </td>
+                                            <td>
+                                                {{customerdetail.objLoanApplication.Verified_Secondary_Income__c | currency}}
+                                            </td>
+                                        </tr>-->
+                                        <tr ng-repeat="obj in FinancialDetail.lstIncomeFromDocs">
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type='text' class="form-control" ng-model='obj.name' style='width:100%;' ng-blur="recalc();"/>
+                                                </div>
+                                            </td>
+                                            <td>{{obj.stated | nullcurrency}}</td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type='text' class="form-control" ng-model='obj.Verified' ng-blur="recalc();"/>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!--<tr>
+                                                <td>Secondary Income</td>
+                                                <td></td>
+                                                <td>
+                                                     <div class="form-group">
+                                                      <input type='text' class="form-control" style='width:50px;' />
+                                                    </div>
+                                                </td>
+                                            </tr>-->
+                                        <tr>
+                                            <td></td>
+                                            <td colspan='2'>
+                                                <a class="" href='javascript:void(0);' ng-click="addNewIncomeRow();">
+                                                    <span class="glyphicon glyphicon-plus"></span>Add New Income</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Annual Income</td>
+                                            <td>{{customerdetail.objLoanApplication.Total_Annual_Income__c | currency}}</td>
+                                            <td>{{customerdetail.objLoanApplication.Verified_Total_Annual_Income__c | currency}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <h3 data-status='bank' data-num='2'>  Bank Account Details</h3>
+                        <div>
+                            <div class='row'>
+                                <div class='col-sm-12'>
+                                    <div class="form-group">
+                                        <span for="FirstName">Name on the Account</span>
+                                        <input type="text" class="form-control" id="FirstName" ng-model="customerdetail.objLoanApplication.Acct_Name__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class='row'>-->
+                            <!--    <div class='col-sm-12'>-->
+                            <!--        <div class="form-group">-->
+                            <!--            <span for="LastName">Name on the Account (Last Name)</span>-->
+                            <!--            <input type="text" class="form-control" id="LastName" value="{{customerdetail.objLoanApplication.Acct_Name__c}}">-->
+                            <!--        </div>-->
+                            <!--    </div>-->
+                            <!--</div>-->
+                            <div class='row'>
+                                <div class='col-sm-12'>
+                                    <div class="form-group">
+                                        <span for="BankName">Bank Name</span>
+                                        <input type="text" class="form-control" id="BankName" ng-model="customerdetail.objLoanApplication.Bank_Name__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="AccountNumber">Account Number</span>
+                                        <input type="text" class="form-control" id="AccountNumber" ng-model="customerdetail.objLoanApplication.Acct_Number__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="BankRoutingNumber" style='float:left;'>Bank Routing Number</span>
+                                        <input type="text" class="form-control" id="BankRoutingNumber" ng-model="customerdetail.objLoanApplication.Bank_Routing_Nr__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-12'>
+                                    <div class="form-group">
+                                        <span for="CurrentBalance">Current Balance</span>
+                                        <input type="text" class="form-control" id="CurrentBalance" ng-model="customerdetail.objLoanApplication.Current_Balance__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class='row'>
+                                <div class='col-sm-6'>
+                                    <b>Nsfs</b>
+                                </div>
+                                <div class='col-sm-6' style='text-align:right;'>
+                                    <b>Result:N/A</b>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-4'>
+                                    <div class="form-group">
+                                        <span for="PaymentType">Month1</span>
+                                        <input type="text" class="form-control" id="PaymentType" ng-model="customerdetail.objLoanApplication.NSF_M1__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <div class="form-group">
+                                        <span for="PaymentType">Month2</span>
+                                        <input type="text" class="form-control" id="PaymentType" ng-model="customerdetail.objLoanApplication.NSF_M2__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <div class="form-group">
+                                        <span for="PaymentType">Month3</span>
+                                        <input type="text" class="form-control" id="PaymentType" ng-model="customerdetail.objLoanApplication.NSF_M3__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-4'>
+                                    <div class="form-group">
+                                        <span for="PaymentType">Cost Per NSF</span>
+                                        <input type="text" class="form-control" id="PaymentType" ng-model="customerdetail.objLoanApplication.Cost_Per_NSF__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-2'></div>
+                                <div class='col-sm-6' style='text-align:right;'><b>M1 NSF Cost=N/A</b></div>
+                            </div>
+                            <hr>
+                            <div class='row'>
+                                <div class='col-sm-6'>
+                                    <b>Balance Trends</b>
+                                </div>
+                                <div class='col-sm-6' style='text-align:right;'>
+                                    <b>Result:N/A</b>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-4'>
+                                    <div class="form-group">
+                                        <span for="PaymentType">Month1</span>
+                                        <input type="text" class="form-control" id="PaymentType" ng-model="customerdetail.objLoanApplication.M1_Avg_Daily_Bal_Amt__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <div class="form-group">
+                                        <span for="PaymentType">Month2</span>
+                                        <input type="text" class="form-control" id="PaymentType" ng-model="customerdetail.objLoanApplication.M2_Avg_Daily_Bal_Amt__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <div class="form-group">
+                                        <span for="PaymentType">Month3</span>
+                                        <input type="text" class="form-control" id="PaymentType" ng-model="customerdetail.objLoanApplication.M3_Avg_Daily_Bal_Amt__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class="form-group">
+                                    <span for="BalanceTrendsM1">Balance Trends (Balance at end of M1)</span>
+                                    <input type="text" class="form-control" id="BalanceTrendsM1" ng-model="customerdetail.objLoanApplication.M1_Avg_Daily_Bal_Amt__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class="form-group">
+                                    <span for="BalanceTrendsM2">Balance Trends (Balance at end of M2)</span>
+                                    <input type="text" class="form-control" id="BalanceTrendsM2" ng-model="customerdetail.objLoanApplication.M2_Avg_Daily_Bal_Amt__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class="form-group">
+                                    <span for="BalanceTrendsM3">Balance Trends (Balance at end of M3)</span>
+                                    <input type="text" class="form-control" id="BalanceTrendsM3" ng-model="customerdetail.objLoanApplication.M3_Avg_Daily_Bal_Amt__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class="form-group">
+                                    <span for="TotalNSFs">Total NSFs</span>
+                                    <input type="text" class="form-control" id="TotalNSFs" ng-model="customerdetail.objLoanApplication.Total_NSFs__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class="form-group">
+                                    <span for="TotalNSFEvents">Total NSF Events</span>
+                                    <input type="text" class="form-control" id="TotalNSFEvents" ng-model="customerdetail.objLoanApplication.Total_NSF_Events__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class="form-group">
+                                    <span for="DayssinceNSF">Days since NSF</span>
+                                    <input type="text" class="form-control" id="DayssinceNSF" ng-model="customerdetail.objLoanApplication.Last_NSF__c">
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class="form-group">
+                                    <span for="NumberLowBalanceEvents">Number Low Balance Events</span>
+                                    <input type="text" class="form-control" id="NumberLowBalanceEvents" ng-model="customerdetail.objLoanApplication.Num_Low_Bal_Events__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class="form-group">
+                                    <span for="NumberLowBalanceDays">Number Low Balance Days</span>
+                                    <input type="text" class="form-control" id="NumberLowBalanceDays" ng-model="customerdetail.objLoanApplication.Total_NSFs__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class="form-group">
+                                    <span for="NumberNegBalanceEvents">Number Neg Balance Events</span>
+                                    <input type="text" class="form-control" id="NumberNegBalanceEvents" ng-model="customerdetail.objLoanApplication.Days_Low_Bal__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class="form-group">
+                                    <span for="NumberNegBalanceDays">Number Neg Balance Days</span>
+                                    <input type="text" class="form-control" id="NumberNegBalanceDays" ng-model="customerdetail.objLoanApplication.Num_Neg_Balance_Events__c">
+                                </div>
+                            </div>
+                        </div>-->
+                            <div class='row'>
+                                <div class='col-sm-12'>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Debt</div>
+                                        <div class="panel-body">
+                                            <!-- Table -->
+                                            <table class="table table-bordered table-responsive" border='0' width='100%' style="width:100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:25%">Debt</th>
+                                                        <th style="width:10%">Stated</th>
+                                                        <th style="width:65%">Verified</th> 
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan='3' style='background-color:#f5f5f5;'>Reported By Bureau</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td >Monthly Credit PMT </td>
+                                                        <td>{{customerdetail.objLoanApplication.Monthly_Credit_PMT__c}}</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>MT33</td>
+                                                        <td>{{customerdetail.objLoanApplication.MT33__c}}</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <!-- <tr>
+                                            <td width='70%'>Housing Situation </td>
+                                            <td>{{customerdetail.objLoanApplication.Housing_Situation__c}}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td width='70%'>Monthly Mortgage</td>
+                                            <td>{{customerdetail.objLoanApplication.Mortgage_PMT__c}}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td width='70%'>Monthly Rent</td>
+                                            <td>{{customerdetail.objLoanApplication.Monthly_Rent__c}}</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td width='70%'>Zestimate</td>
+                                            <td>{{customerdetail.objLoanApplication.Zestimate__c}}</td>
+                                            <td></td>
+                                        </tr>-->
+                                                    <!--<tr ng-repeat="obj in FinancialDetail.lstDebtReportedBy">-->
+                                                    <!--    <td width='70%'>{{obj.name}}</td>-->
+                                                    <!--    <td>{{obj.stated}}</td>-->
+                                                    <!--    <td>{{obj.Verified}}</td>-->
+                                                    <!--</tr>-->
+                                                    <tr>
+                                                        <td colspan='3' style='background-color:#f5f5f5;'>Reported By Customer</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td >Housing Situation </td>
+                                                        <td>{{customerdetail.objLoanApplication.Housing_Situation__c}}</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Monthly Rent </td>
+                                                        <td>{{customerdetail.objLoanApplication.Monthly_Rent__c}}</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td >Monthly Mortgage</td>
+                                                        <td>{{customerdetail.objLoanApplication.Mortgage_PMT__c}}</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td >Zestimate</td>
+                                                        <td>{{customerdetail.objLoanApplication.Zestimate__c}}</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan='3' style='background-color:#f5f5f5;'>Additional Debt</td>
+                                                    </tr>
+                                                    <tr ng-show='customerdetail.objLoanApplication.Verified_Debt1__c'>
+                                                        <td>Debt1</td>
+                                                        <td></td>
+                                                        <td>{{customerdetail.objLoanApplication.Verified_Debt1__c}}</td>
+                                                    </tr>
+                                                    <tr ng-show="customerdetail.objLoanApplication.Verified_Debt2__c">
+                                                        <td>Debt2</td>
+                                                        <td></td>
+                                                        <td>{{customerdetail.objLoanApplication.Verified_Debt2__c}}</td>
+                                                    </tr>
+                                                    <!--<tr ng-repeat="obj in FinancialDetail.lstDebtReportedByCustomer">-->
+                                                    <!--    <td>{{obj.name}}</td>-->
+                                                    <!--    <td>{{obj.stated}}</td>-->
+                                                    <!--    <td>-->
+                                                    <!--        {{obj.Verified}}-->
+                                                    <!--    </td>-->
+                                                    <!--</tr>-->
+                                                    <!-- <tr>
+                                            <td colspan='3' style='background-color:#f5f5f5;'>Not Reported By Bureau</td>
+                                        </tr>-->
+                                                    <tr ng-repeat="obj in FinancialDetail.lstDebtNotReportedBy">
+                                                        <td>
+                                                            <span data-ng-hide="obj.isEdit"> {{obj.name}}</span>
+                                                            <div class="form-group" data-ng-show="obj.isEdit">
+                                                                <input type='text' class="form-control" ng-model='obj.name' style='width:100%;' ng-blur="recalc();"/>
+                                                            </div>
+                                                        </td>
+                                                        <td>{{obj.stated}}</td>
+                                                        <td>
+                                                            <span data-ng-hide="obj.isEdit">{{obj.Verified}}</span>
+                                                            <div class="form-group" data-ng-show="obj.isEdit">
+                                                                <input type='text' class="form-control" ng-model='obj.Verified' ng-blur="recalc();"/>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td colspan='2'>
+                                                            <a class="" href='javascript:void(0);' ng-click='addNewDebtNotReported();'>
+                                                                <span class="glyphicon glyphicon-plus"></span>Debt</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Total Debt</td>
+                                                        <td>{{customerdetail.objLoanApplication.Total_Debt__c}}</td>
+                                                        <td>{{customerdetail.objLoanApplication.Verified_Total_Debt__c}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <!--<div class='col-sm-5'>-->
+                                <!--<div class="form-group">-->
+                                <!--    <span for="MaxLoanAmt">Max Loan Amt</span>-->
+                                <!--    <input type="text" class="form-control" id="MaxLoanAmt">-->
+                                <!--</div>-->
+                                <!--</div>-->
+                               <!-- <div class='col-sm-12'>
+                                    <div class="form-group">
+                                        <span for="Monthlycreditpayment" style='float:left;'>Monthly credit payment</span>
+                                        <input type="text" class="form-control" id="Monthlycreditpayment">
+                                    </div>
+                                </div>-->
+                            </div>
+                            <!--<div class='row'>-->
+                            <!--    <div class='col-sm-12'>-->
+                            <!--        <div class="form-group">-->
+                            <!--            <span for="AffordableLoanAmt">Affordable Loan Amt</span>-->
+                            <!--            <input type="text" class="form-control" id="AffordableLoanAmt">-->
+                            <!--        </div>-->
+                            <!--    </div>-->
+                            <!--</div>-->
+                            <!--<div class='row'>-->
+                            <!--    <div class='col-sm-12'>-->
+                            <!--        <div class="form-group">-->
+                            <!--            <span for="MonthlyPaymentAmt">Monthly Payment Amt</span>-->
+                            <!--            <input type="text" class="form-control" id="MonthlyPaymentAmt">-->
+                            <!--        </div>-->
+                            <!--    </div>-->
+                            <!--</div>-->
+                            <!--<div class='row'>-->
+                            <!--    <div class='col-sm-12'>-->
+                            <!--        <div class="form-group">-->
+                            <!--            <span for="AffordableMonthlypaymentAmt">Affordable Monthly payment Amt</span>-->
+                            <!--            <input type="text" class="form-control" id="AffordableMonthlypaymentAmt">-->
+                            <!--        </div>-->
+                            <!--    </div>-->
+                            <!--</div>-->
+                            <!--<div class='row'>-->
+                            <!--    <div class='col-sm-12'>-->
+                            <!--        <div class="form-group">-->
+                            <!--            <span for="LoanPaymentTotalAmt">Loan Payment Total Amt</span>-->
+                            <!--            <input type="text" class="form-control" id="LoanPaymentTotalAmt">-->
+                            <!--        </div>-->
+                            <!--    </div>-->
+                            <!--</div>-->
+                        </div>
+                        <h3 data-status='employment' data-num='3'> Employment Details</h3>
+                        <div>
+                            <div class='row'>
+                                <div class='col-sm-3'></div>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="SelfEmployed">Employment Status</span>
+                                        <input type="text" class="form-control" id="SelfEmployed" ng-model="customerdetail.objLoanApplication.Employment_Status__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-3'></div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-7'>
+                                    <div class="form-group">
+                                        <span for="CompanyName" style='float:left;'>Company Name</span>
+                                        <input type="text" class="form-control" id="CompanyName" ng-model="customerdetail.objLoanApplication.Employment_Verification__r[0].Company_Name__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-5'>
+                                    <div class="form-group">
+                                        <span for="SelfEmployed">Employment Title</span>
+                                        <input type="text" class="form-control" id="EmploymentTitle" ng-model="customerdetail.objLoanApplication.Employment_Verification__r[0].Employment_Title__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class='row'>
+                                <div class='col-sm-5'>
+                                    <div class="form-group">
+                                        <span for="CompanyAddress">Company Address</span>
+                                        <textarea class="form-control" id="CompanyAddress" style='width:100%;'>{{customerdetail.objLoanApplication.Employment_Verification__r[0].Company_Address__c}} {{customerdetail.objLoanApplication.Employment_Verification__r[0].Company_City__c}} {{customerdetail.objLoanApplication.Employment_Verification__r[0].Company_State__c}}</textarea>
+                                    </div>
+                                </div>
+                                <div class='col-sm-7'>
+                                    <div class="form-group">
+                                        <span for="CompanyPhoneNumber">Company Phone Number</span>
+                                        <input type="text" class="form-control" id="CompanyPhoneNumber" ng-model="customerdetail.objLoanApplication.Employment_Verification__r[0].Company_Phone__c">
+                                    </div>
+                                </div>
+                            </div>-->
+                            <div class='row'>
+                                <div class='col-sm-7'>
+                                    <div class="form-group">
+                                        <span for="SupervisorName">Supervisor Name</span>
+                                        <input type="text" class="form-control" id="SupervisorName" ng-model="customerdetail.objLoanApplication.Employment_Verification__r[0].Supervisor_Name__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-5'>
+                                    <div class="form-group">
+                                        <span for="SupervisorContactNo" style='float:left;'>Supervisor Contact No</span>
+                                        <input type="text" class="form-control" id="SupervisorContactNo" ng-model="customerdetail.objLoanApplication.Employment_Verification__r[0].Supervisor_Phone__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--div class='row'>
+                                <div class='col-sm-5'>
+                                    <div class="form-group">
+                                        <span for="WorkPhoneNumber">Work Phone Number</span>
+                                        <input type="text" class="form-control" id="WorkPhoneNumber" ng-model="customerdetail.objLoanApplication.Employment_Verification__r[0].Employee_Phone__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-7'>
+                                    <div class="form-group">
+                                        <span for="TimeatCurrentJob" style='float:left;'>Time at Current Job</span>
+                                        <input type="text" class="form-control" id="TimeatCurrentJob" ng-model="customerdetail.objLoanApplication.Employment_Verification__r[0].Time_in_Position__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-5'>
+                                    <div class="form-group">
+                                        <span for="IncomeType">Income Type</span>
+                                        <input type="text" class="form-control" id="IncomeType" ng-model="customerdetail.objLoanApplication.Employment_Verification__r[0].Income_Type__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-7'>
+                                    <div class="form-group">
+                                        <span for="PayFrequency" style='float:left;'>Pay Frequency</span>
+                                        <input type="text" class="form-control" id="PayFrequency" ng-model="customerdetail.objLoanApplication.Employment_Verification__r[0].Pay_Frequency__c">
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                        <!--<button type='button' class="btn btn-primary" ng-click="openRecalculateDTI('lg',$event);" style='font-size: 10px;position: absolute;margin-top: -40px;z-index: 32767;margin-left: 63%;'>Create New Contract</button>-->
+                        <h3 data-status='contract' data-num='4'>
+                        Contract Details
+                    <!--class="clearfix" style="vertical-align:middle;">-->
+                         <!--<span style="position: absolute;top: 50%;margin-top: -8px;">Contract Details</span>-->
+                         <!--<button type="button" href="#" class="btn btn-primary dynamic" ng-click="openRecalculateDTI('lg',$event);" style='float:right;font-size:10px'>Create New Contract</button> -->
+                    </h3>
+                        <div>
+                            <div class='row'>
+                                <div class='col-sm-3'>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="RequestedLoanAmt">Loan Amt</span>
+                                        <input type="text" class="form-control" id="RequestedLoanAmt" ng-model="customerdetail.objLoanApplication.Req_Loan_Amt__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-3'></div>
+                            </div>
+                            <div class='row'>
+                                <!--  <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="User_ID">User_ID</span>
+                                    <input type="text" class="form-control" id="User ID" ng-model="customerdetail.objLoanApplication.User_ID__c">
+                                </div>
+                            </div>-->
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="Loan_ID" style='float:left;'>Loan ID</span>
+                                        <input type="text" class="form-control" id="Loan_ID" ng-model="customerdetail.objLoanApplication.Loan_ID__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="Loan_ID" style='float:left;'>Requested Loan Amt</span>
+                                        <input type="text" class="form-control" id="RequestedLoanAmt" ng-model="customerdetail.objLoanApplication.Req_Loan_Amt__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="LoanType">Loan Type</span>
+                                        <input type="text" class="form-control" id="LoanType" ng-model="customerdetail.objLoanApplication.Loan_Type_Desc__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="LoanTerm" style='float:left;'>Loan Term</span>
+                                        <input type="text" class="form-control" id="LoanTerm" ng-model="customerdetail.objLoanApplication.Loan_Term__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="LoanType">Finance Charge</span>
+                                        <input type="text" class="form-control" id="LoanType" ng-model="customerdetail.objLoanApplication.Finance_Charge__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="APR" style='float:left;'>APR</span>
+                                        <input type="text" class="form-control" id="APR" ng-model="customerdetail.objLoanApplication.APR__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="LoanType">Total Payment</span>
+                                        <input type="text" class="form-control" id="APR" ng-model="customerdetail.objLoanApplication.Loan_Payment_Total_Amt__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="APR" style='float:left;'>Monthly Payment</span>
+                                        <input type="text" class="form-control" id="APR" ng-model="customerdetail.objLoanApplication.Monthly_Payment_Amt__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="LoanType">Contract Date</span>
+                                        <input type="text" class="form-control" id="APR" value="{{customerdetail.objLoanApplication.Contract_Dt__c | date : 'MM/dd/yyyy'}}">
+                                    </div>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="APR" style='float:left;'>Maturity Date</span>
+                                        <input type="text" class="form-control" id="APR" value="{{customerdetail.objLoanApplication.Maturity_Date__c | date : 'MM/dd/yyyy'}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class='row'>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="ReasonforLoan">Reason for Loan</span>
+                                    <input type="text" class="form-control" id="ReasonforLoan" ng-model="customerdetail.objLoanApplication.Loan_Reason__c">
+                                </div>
+                            </div>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="MaxLoanAmt" style='float:left;'>Max Loan Amt</span>
+                                    <input type="text" class="form-control" id="MaxLoanAmt" ng-model="customerdetail.objLoanApplication.Max_Loan_Amt__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="AffordableLoanAmt">Affordable Loan Amt</span>
+                                    <input type="text" class="form-control" id="AffordableLoanAmt" ng-model="customerdetail.objLoanApplication.Affordable_Loan_Amt__c">
+                                </div>
+                            </div>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="MonthlyPaymentAmt" style='float:left;'>Monthly Payment Amt</span>
+                                    <input type="text" class="form-control" id="MonthlyPaymentAmt" ng-model="customerdetail.objLoanApplication.Monthly_Payment_Amt__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="AffordableMonthlypaymentAmt">Affordable Monthly payment Amt</span>
+                                    <input type="text" class="form-control" id="AffordableMonthlypaymentAmt" ng-model="customerdetail.objLoanApplication.Affordable_Monthly_Payment_Amt__c">
+                                </div>
+                            </div>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="LoanPaymentTotalAmt" style='float:left;'>Loan Payment Total Amt</span>
+                                    <input type="text" class="form-control" id="LoanPaymentTotalAmt" ng-model="customerdetail.objLoanApplication.Loan_Payment_Total_Amt__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="PortfolioID">Portfolio ID</span>
+                                    <input type="text" class="form-control" id="PortfolioID" ng-model="customerdetail.objLoanApplication.Loan_Portfolio__c">
+                                </div>
+                            </div>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="ProductID" style='float:left;'>Product ID</span>
+                                    <input type="text" class="form-control" id="ProductID">
+                          
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="LoanType">Loan Type</span>
+                                    <input type="text" class="form-control" id="LoanType" ng-model="customerdetail.objLoanApplication.Loan_Type_Desc__c">
+                                </div>
+                            </div>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="APR" style='float:left;'>APR</span>
+                                    <input type="text" class="form-control" id="APR" ng-model="customerdetail.objLoanApplication.APR__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="PartnerID">Partner ID</span>
+                                    <input type="text" class="form-control" id="PartnerID" ng-model="customerdetail.objLoanApplication.Partner_ID__c">
+                                </div>
+                            </div>
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <span for="CampaignID" style='float:left;'>Campaign ID</span>
+                                    <input type="text" class="form-control" id="CampaignID" ng-model="customerdetail.objLoanApplication.Campaign_ID__c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='col-sm-12'>
+                                <div class="form-group">
+                                    <span for="FundingPartnerID">Funding Partner ID</span>
+                                    <input type="text" class="form-control" id="FundingPartnerID" ng-model="customerdetail.objLoanApplication.Funding_Partner_ID__c">
+                                </div>
+                            </div>
+                          
+                        </div>-->
+                            <div class="row">
+                                <div class='col-md-offset-6 col-sm-6 text-right'>
+                                    <div class="form-group">
+                                        <button type="button" href="#" class="btn btn-primary dynamic" ng-click="openRecalculateDTI('lg',$event);" style='float:right;font-size:10px'>Create New Contract</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 data-status='risk' data-num='5'>   Risk</h3>
+                        <div>
+                            <div class='row'>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="FICO">FICO</span>
+                                        <input type="text" class="form-control" id="FICO" ng-model="customerdetail.objLoanApplication.FICO_Score__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="Vantage" style='float:left;'>Vantage</span>
+                                        <input type="text" class="form-control" id="Vantage" ng-model="customerdetail.objLoanApplication.Vantage_Score__c">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="ARS">ARS</span>
+                                        <input type="text" class="form-control" id="ARS" ng-model="customerdetail.objLoanApplication.ARS__c">
+                                    </div>
+                                </div>
+                                <div class='col-sm-6'>
+                                    <div class="form-group">
+                                        <span for="RiskCategory" style='float:left;'>Risk Segment</span>
+                                        <input type="text" class="form-control" id="RiskCategory" ng-model="customerdetail.objLoanApplication.Risk_Segment__c">
+                                        <!-- value="{{customerdetail.objLoanApplication.Funding_Partner_ID__c}}">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-7 col-sm-8" style='min-height:300px;border1:1px solid gray;padding:1px;' ui-view>
+        </div>
+    </div>
+</div>
