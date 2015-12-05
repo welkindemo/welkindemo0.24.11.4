@@ -1,10 +1,9 @@
-<apex:page controller="AccountListController" standardStylesheets="false" showChat="false" showHeader="true" sidebar="true" applyHtmlTag="true" applyBodyTag="true" docType="html-5.0" readOnly="true">
+﻿<apex:page controller="AccountListController" standardStylesheets="false" showChat="false" showHeader="true" sidebar="true" applyHtmlTag="true" applyBodyTag="true" docType="html-5.0" readOnly="true">
     <html>
 
     <head>
         <meta charset="utf-8" />
         <base href="/" />
-        <!-- some comments -->
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width" />
         <!-- Core Libs -->
         <apex:includeScript value="{!URLFOR($Resource.libs, 'LibraryDataTables/dataTables/jquery1.11.1.min.js')}" />

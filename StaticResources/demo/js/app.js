@@ -1,8 +1,8 @@
 (function(angular) {
     'use strict';
 
-    angular.module('loan-app.core', [
-        'loan-app.applist',
+    angular.module('demo-app.core.core', [
+        'demo-app.applist',
         // 3rd party
         'ui.router', 'ui.bootstrap', 'ngDialog', 'textAngular', 'ngSanitize', 'dialogs', 'ngLoadingSpinner', 'checklist-model'
     ])

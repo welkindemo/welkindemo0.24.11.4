@@ -28,6 +28,7 @@
             }
         } //return
     }).controller('ApplicationListingCtrl', function(applicationListService, $q, $scope, $compile, $filter, DTOptionsBuilder, DTColumnBuilder, DTDefaultOptions, DTColumnDefBuilder) {
+
             // $scope.UserDetail = VFPageData.User.Name;
             //todo: do it via root scope
 			

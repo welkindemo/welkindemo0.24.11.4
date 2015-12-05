@@ -6,7 +6,6 @@ public class AccountListController{
     }
 
 	public static List<Contact> getRelatedContactList(String accountId){
-		// it returns List of contacts
 		return AccountListSelector.getRelatedContactList(accountId);
 	}
 }

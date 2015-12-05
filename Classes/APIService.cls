@@ -19,7 +19,7 @@ public with sharing class APIService {
         }
         
         
-        public static HttpRequest getHTTPRequest(String strEndPoint, String strMethod) {
+        private static HttpRequest getHTTPRequest(String strEndPoint, String strMethod) {
             HttpRequest req = new HttpRequest();
             req.setEndpoint(strEndPoint);
             req.setMethod(strMethod);
