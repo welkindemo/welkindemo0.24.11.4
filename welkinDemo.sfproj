@@ -21,9 +21,12 @@
   <ItemGroup>
     <Folder Include="AnonymousApex" />
     <Folder Include="Classes" />
+    <Folder Include="Classes\HR" />
+    <Folder Include="Classes\Sales" />
     <Folder Include="Lightning Bundles" />
     <Folder Include="Lightning Bundles\demoExpenseApp\" />
     <Folder Include="Lightning Bundles\demoExpenseCmp\" />
+    <Folder Include="Sales" />
     <Folder Include="Objects" />
     <Folder Include="Pages" />
     <Folder Include="Soql" />
@@ -148,22 +151,16 @@
       <LastModifiedDateUtcTicks>130937761830000000</LastModifiedDateUtcTicks>
       <Hash>q2zQIsoArqZaXStpmspDAQ==</Hash>
     </Compile>
-    <Compile Include="Classes\HRController.cls">
+    <Compile Include="Classes\HR\HRController.cls">
       <SubType>Class</SubType>
       <Id>01p28000004qLkLAAU</Id>
       <Hash>AOdISWaoQ8tDGHXG22dDJg==</Hash>
       <LastModifiedDateUtcTicks>130937796710000000</LastModifiedDateUtcTicks>
     </Compile>
-    <Compile Include="Classes\HRlist.cls">
+    <Compile Include="Classes\HR\HRlist.cls">
       <SubType>Class</SubType>
       <Id>01p28000004qLk6AAE</Id>
       <Hash>EO++yIUU+l4M2b0cm7nnEQ==</Hash>
-      <LastModifiedDateUtcTicks>130937796710000000</LastModifiedDateUtcTicks>
-    </Compile>
-    <Compile Include="Classes\SalesList.cls">
-      <SubType>Class</SubType>
-      <Id>01p28000004qLkBAAU</Id>
-      <Hash>EfKLrYfjT/qFa2IeQNbPuA==</Hash>
       <LastModifiedDateUtcTicks>130937796710000000</LastModifiedDateUtcTicks>
     </Compile>
     <Compile Include="Classes\TestDemoController.cls">
@@ -218,6 +215,12 @@
       <LastModifiedDateUtcTicks>130937854350000000</LastModifiedDateUtcTicks>
       <Hash>cYsmChBTCI+BwYsTrtw51Q==</Hash>
     </Compile>
+    <Compile Include="Sales\SalesList.cls">
+      <SubType>Class</SubType>
+      <Id>01p28000004qLkBAAU</Id>
+      <Hash>LXssHsLougGvC66n9cdAfg==</Hash>
+      <LastModifiedDateUtcTicks>130937946750000000</LastModifiedDateUtcTicks>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Classes\AccountListController.cls-meta.xml">
@@ -244,23 +247,13 @@
       <Hash>qPYxbthsTjFyWy7IXTGaXw==</Hash>
       <LastModifiedDateUtcTicks>130937761830000000</LastModifiedDateUtcTicks>
     </None>
-    <None Include="Classes\HRController.cls-meta.xml">
+    <None Include="Classes\HR\HRController.cls-meta.xml">
       <SubType>Metadata</SubType>
-      <Hash>qPYxbthsTjFyWy7IXTGaXw==</Hash>
-      <LastModifiedDateUtcTicks>130937796710000000</LastModifiedDateUtcTicks>
-      <DependentUpon>Classes\HRController.cls</DependentUpon>
+      <DependentUpon>Classes\HR\HRController.cls</DependentUpon>
     </None>
-    <None Include="Classes\HRlist.cls-meta.xml">
+    <None Include="Classes\HR\HRlist.cls-meta.xml">
       <SubType>Metadata</SubType>
-      <Hash>qPYxbthsTjFyWy7IXTGaXw==</Hash>
-      <LastModifiedDateUtcTicks>130937796710000000</LastModifiedDateUtcTicks>
-      <DependentUpon>Classes\HRlist.cls</DependentUpon>
-    </None>
-    <None Include="Classes\SalesList.cls-meta.xml">
-      <SubType>Metadata</SubType>
-      <Hash>qPYxbthsTjFyWy7IXTGaXw==</Hash>
-      <LastModifiedDateUtcTicks>130937796710000000</LastModifiedDateUtcTicks>
-      <DependentUpon>Classes\SalesList.cls</DependentUpon>
+      <DependentUpon>Classes\HR\HRlist.cls</DependentUpon>
     </None>
     <None Include="Classes\TestDemoController.cls-meta.xml">
       <SubType>Metadata</SubType>
@@ -273,6 +266,12 @@
       <DependentUpon>Pages\staticresourcedemo.page</DependentUpon>
       <LastModifiedDateUtcTicks>130937854350000000</LastModifiedDateUtcTicks>
       <Hash>K1czuS5TsJpg/Ss2YK7m/w==</Hash>
+    </None>
+    <None Include="Sales\SalesList.cls-meta.xml">
+      <SubType>Metadata</SubType>
+      <DependentUpon>Sales\SalesList.cls</DependentUpon>
+      <Hash>qPYxbthsTjFyWy7IXTGaXw==</Hash>
+      <LastModifiedDateUtcTicks>130937946750000000</LastModifiedDateUtcTicks>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -539,8 +538,8 @@
     <StaticZip Include="StaticResources\demo">
       <SubType>StaticResourceZip</SubType>
       <Id>08128000000Ds3MAAS</Id>
-      <LastModifiedDateUtcTicks>130937830040000000</LastModifiedDateUtcTicks>
-      <Hash>ZPqrpA/7bggnlYtMrVm5IQ==</Hash>
+      <LastModifiedDateUtcTicks>130937946780000000</LastModifiedDateUtcTicks>
+      <Hash>kXROHfyb2UA0hgzbgAuXPw==</Hash>
     </StaticZip>
     <StaticZip Include="StaticResources\libs">
       <SubType>StaticResourceZip</SubType>
